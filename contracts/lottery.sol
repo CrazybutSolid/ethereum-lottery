@@ -3,7 +3,7 @@ pragma solidity ^0.4.11;
 // Contract that:
 //      Lets anyone bet with 1 ether
 //      When it reaches 5 bets, it chooses a gambler at random and sends the 5 ethers received
-contract BasicLottery5 {
+contract Lottery {
     
         // A mapping to store ethereum addresses
             mapping(uint => address) public gamblers;
@@ -12,7 +12,7 @@ contract BasicLottery5 {
             uint public my_length; //*to keep track of the length.
             uint public random; //random number
             
-            function BasicLottery5(){
+            function Lottery(){
                 my_length = 0;
             }
         // function when someone sends an ether

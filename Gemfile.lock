@@ -50,7 +50,11 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    digest-sha3 (1.1.0)
     erubis (2.7.0)
+    ethereum.rb (2.1.6)
+      activesupport (~> 5.0)
+      digest-sha3 (~> 1.1)
     execjs (2.7.0)
     ffi (1.9.18)
     globalid (0.4.0)
@@ -156,6 +160,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  ethereum.rb
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

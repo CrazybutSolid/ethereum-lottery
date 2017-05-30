@@ -2,3 +2,30 @@
 <p>
   The time is now: <%= Time.now %>
 </p>
+<p>The number of sign ups so far is</p>
+<p id="signups"></p>
+<p>the list of sign ups so far:</p>
+<ul>
+	<li id="gamblers"></li>
+</ul>
+<script type="text/javascript">
+if (typeof web3 !== 'undefined') {
+  web3 = new Web3(web3.currentProvider);
+} else {
+	var Web3 = require('web3');
+	var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/lw3MDy2ASTmOSg0e6aaj'));
+	var version = web3.version.api;
+	    var contractABI = [ { "constant": false, "inputs": [], "name": "bet", "outputs": [], "payable": true, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "uint256" } ], "name": "gamblers", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "random", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "my_length", "outputs": [ { "name": "", "type": "uint256", "value": "1" } ], "payable": false, "type": "function" }, { "inputs": [], "payable": false, "type": "constructor" } ];
+	    if (contractABI != ''){
+	        var MyContract = web3.eth.contract(contractABI);
+	        var myContractInstance = MyContract.at("0x20b8c246DCaF8Dd2c739A49c02D0dDfC752C1c07");
+	        var signups = myContractInstance.my_length();
+	        var gamblers = myContractInstance.gamblers(1);
+	         document.getElementById("signups").innerHTML = signups;
+	         document.getElementById("gamblers").innerHTML = gamblers;
+	    } else {
+	        console.log("Error" );
+	    }            
+	
+}
+</script>
