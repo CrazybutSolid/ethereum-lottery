@@ -6,7 +6,11 @@
 <p id="signups"></p>
 <p>the list of sign ups so far:</p>
 <ul>
-	<li id="gamblers"></li>
+	<li id="gamblers1"></li>
+	<li id="gamblers2"></li>
+	<li id="gamblers3"></li>
+	<li id="gamblers4"></li>
+	<li id="gamblers5"></li>
 </ul>
 <script type="text/javascript">
 if (typeof web3 !== 'undefined') {
@@ -20,9 +24,18 @@ if (typeof web3 !== 'undefined') {
 	        var MyContract = web3.eth.contract(contractABI);
 	        var myContractInstance = MyContract.at("0x20b8c246DCaF8Dd2c739A49c02D0dDfC752C1c07");
 	        var signups = myContractInstance.my_length();
-	        var gamblers = myContractInstance.gamblers(1);
+	        var gamblers1 = myContractInstance.gamblers(1);
+	        var gamblers2 = myContractInstance.gamblers(2);
+	        var gamblers3 = myContractInstance.gamblers(3);
+	        var gamblers4 = myContractInstance.gamblers(4);
+	        var gamblers5 = myContractInstance.gamblers(5);
 	         document.getElementById("signups").innerHTML = signups;
-	         document.getElementById("gamblers").innerHTML = gamblers;
+	         document.getElementById("gamblers1").innerHTML = gamblers1;
+	         document.getElementById("gamblers2").innerHTML = gamblers2;
+	         document.getElementById("gamblers3").innerHTML = gamblers3;
+	         document.getElementById("gamblers4").innerHTML = gamblers4;
+	         document.getElementById("gamblers5").innerHTML = gamblers5;
+
 	    } else {
 	        console.log("Error" );
 	    }            
