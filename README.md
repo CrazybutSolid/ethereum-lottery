@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ethereum Lottery
 
-Things you may want to cover:
+How to play:
 
-* Ruby version
+1) Send 1 ether (exact) to address 0x20b8c246DCaF8Dd2c739A49c02D0dDfC752C1c07
+2) After 5 people have sent one ether, the contract chooses one address at random and sends the 5 ethers to that account
+3) The lottery restarts
 
-* System dependencies
+I'm a terrible developer! Doing this for fun and to understand ethereum. Any suggestions to the code are highly encouraged and recommended.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Smart contract code is in the /contracts directory
