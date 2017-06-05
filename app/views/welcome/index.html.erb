@@ -3,10 +3,9 @@
 	<li>Send 1 ether (exact) to address 0x20b8c246DCaF8Dd2c739A49c02D0dDfC752C1c07</li>
 	<li>After 5 people have sent one ether, the contract chooses one address at random and sends the 5 ethers to that account</li>
 	<li>The game restarts</li>
-	<li>sourcecode: </li>
-	<li></li>
-	<li></li>
+	<li>sourcecode: <%= link_to 'ethereum lottery', "https://github.com/CrazybutSolid/ethereum-lottery" %> </li>
 </ol>
+<h3>Last Lottery winner: <span id="lastwinner"></span></h3>
 <p>The number of sign ups so far is</p>
 <p id="signups"></p>
 <p>the list of sign ups so far:</p>
@@ -34,6 +33,7 @@ if (typeof web3 !== 'undefined') {
 	        var gamblers3 = myContractInstance.gamblers(3);
 	        var gamblers4 = myContractInstance.gamblers(4);
 	        var gamblers5 = myContractInstance.gamblers(5);
+	        var lastwinner = myContractInstance.lastwinner();
 	         document.getElementById("signups").innerHTML = signups;
 	         document.getElementById("gamblers1").innerHTML = gamblers1;
 	         document.getElementById("gamblers2").innerHTML = gamblers2;

@@ -11,6 +11,7 @@ contract Lottery {
             
             uint public my_length; //*to keep track of the length.
             uint public random; //random number
+            address public winner; //the last winner of the lottery
             
             function Lottery(){
                 my_length = 0;
@@ -38,6 +39,8 @@ contract Lottery {
             // pick a random number between 1 and 5
             random = uint(block.blockhash(block.number-1))%5 + 1;
             gamblers[random].transfer(5 ether);
+            // save the last winner
+            winner = gamblers[random];
             // when splitting the gains for future usage 0x8ad2b6F71ac9864cAa96EF0D9F7a554Dc3619eF8.transfer(2.5 ether);
             my_length = 0;
 
