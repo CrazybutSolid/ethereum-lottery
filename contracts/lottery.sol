@@ -38,7 +38,7 @@ contract Lottery {
         if (my_length == 5) {
             // pick a random number between 1 and 5
             random = uint(block.blockhash(block.number-1))%5 + 1;
-            gamblers[random].transfer(0.5 ether);
+            gamblers[random].transfer(0.8 ether);
             // save the last winner
             winner = gamblers[random];
             // sends 0.2 ethers to GiveDirectly in production
