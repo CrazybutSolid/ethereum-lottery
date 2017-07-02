@@ -20,16 +20,16 @@ contract Lottery {
         // stores the address, and if there are 5 participants, 
         // chooses a winner and gives the money
         
-        function bet() payable {
+        function () payable {
         // No arguments are necessary, all
         // information is already part of
         // the transaction. The keyword payable
         // is required for the function to
         // be able to receive Ether.
 
-        // If the bet is not 1 ether, send the
+        // If the bet is not 0.2 ether, send the
         // money back.
-        require(msg.value == 1 ether);
+        require(msg.value == 0.2 ether);
         
         my_length +=1;
         
@@ -38,11 +38,19 @@ contract Lottery {
         if (my_length == 5) {
             // pick a random number between 1 and 5
             random = uint(block.blockhash(block.number-1))%5 + 1;
-            gamblers[random].transfer(5 ether);
+            gamblers[random].transfer(0.5 ether);
             // save the last winner
             winner = gamblers[random];
-            // when splitting the gains for future usage 0x8ad2b6F71ac9864cAa96EF0D9F7a554Dc3619eF8.transfer(2.5 ether);
+            // sends 0.2 ethers to GiveDirectly in production
+            // 0x512c3FCccdEFDa5D58E188b1AF39893e5D147aA3.transfer(0.2 ether);
+            // Fake Give Directly address (Ropsten)
+            0xd60406B842Ba7bCA8E83aF189e2A1bc96b24072B.transfer(0.2 ether);
             my_length = 0;
+            gamblers[1] = 0;
+            gamblers[2] = 0;
+            gamblers[3] = 0;
+            gamblers[4] = 0;
+            gamblers[5] = 0;
 
         }
     }
