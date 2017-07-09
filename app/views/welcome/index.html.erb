@@ -1,7 +1,7 @@
 <h1>Ethereum Lottery</h1>
 
 <ol>How to play:
-	<li>Send 0.2 ether (exact) to address 0xC56c7dA40CDEB18b75f10f6D817a9Ca34cF450f8 (TESTNET Ropsten at the moment)</li>
+	<li>Send 0.2 ether (exact) to address 0x9d89720eF20Ada99C130Fa6a6bd17BBC5C40BB44 (TESTNET Ropsten at the moment)</li>
 	<li>After 5 people have sent 0.2 ether, the contract chooses one address at random and sends 0.8 ethers to that account and 0.2 to <%= link_to "GiveDirectly", "http://www.GiveDirectly.com"%></li>
 	<li>The game restarts</li>
 	<li>sourcecode: <%= link_to 'ethereum lottery', "https://github.com/CrazybutSolid/ethereum-lottery" %> </li>
@@ -24,11 +24,10 @@ if (typeof web3 !== 'undefined') {
 	var Web3 = require('web3');
 	var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/gZsX6A6SplPQZ1ScPjXA'));
 	//var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/lw3MDy2ASTmOSg0e6aaj'));
-	var version = web3.version.api;
-	    var contractABI = [ { "constant": true, "inputs": [ { "name": "", "type": "uint256" } ], "name": "gamblers", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "random", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "my_length", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "winner", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "inputs": [], "payable": false, "type": "constructor" }, { "payable": true, "type": "fallback" } ];
+	var version = web3.ver[ { "constant": true, "inputs": [], "name": "totalPayments", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "uint256" } ], "name": "gamblers", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [], "name": "withdrawPayments", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "required_number_players", "outputs": [ { "name": "", "type": "uint8", "value": "3" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "winner_percentage", "outputs": [ { "name": "", "type": "uint256", "value": "80" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "newAnte", "type": "uint256" }, { "name": "newNumberOfPlayers", "type": "uint8" }, { "name": "newWinnerPercentage", "type": "uint256" } ], "name": "changeParameters", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "player_count", "outputs": [ { "name": "", "type": "uint8", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "winner", "outputs": [ { "name": "", "type": "address", "value": "0x681163e501a400ca1f536ba023141697bc851986" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "payments", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "ante", "outputs": [ { "name": "", "type": "uint256", "value": "200000000000000000" } ], "payable": false, "type": "function" }, { "inputs": [], "payable": false, "type": "constructor" }, { "payable": true, "type": "fallback" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "_from", "type": "address" }, { "indexed": true, "name": "_to", "type": "address" }, { "indexed": false, "name": "_value", "type": "uint256" } ], "name": "Announce_winner", "type": "event" } ];
 	    if (contractABI != ''){
 	        var MyContract = web3.eth.contract(contractABI);
-	        var myContractInstance = MyContract.at("0xC56c7dA40CDEB18b75f10f6D817a9Ca34cF450f8");
+	        var myContractInstance = MyContract.at("0x9d89720eF20Ada99C130Fa6a6bd17BBC5C40BB44");
 	        var signups = myContractInstance.player_count();
 	        var gamblers1 = myContractInstance.gamblers(1);
 	        var gamblers2 = myContractInstance.gamblers(2);
