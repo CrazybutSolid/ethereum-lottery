@@ -29,7 +29,7 @@ if (typeof web3 !== 'undefined') {
 	    if (contractABI != ''){
 	        var MyContract = web3.eth.contract(contractABI);
 	        var myContractInstance = MyContract.at("0xC56c7dA40CDEB18b75f10f6D817a9Ca34cF450f8");
-	        var signups = myContractInstance.my_length();
+	        var signups = myContractInstance.player_count();
 	        var gamblers1 = myContractInstance.gamblers(1);
 	        var gamblers2 = myContractInstance.gamblers(2);
 	        var gamblers3 = myContractInstance.gamblers(3);
