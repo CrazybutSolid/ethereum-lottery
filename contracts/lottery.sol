@@ -110,7 +110,7 @@ contract Lottery is PullPayment {
     function changeParameters(uint newAnte, uint8 newNumberOfPlayers, uint newWinnerPercentage) {
         // Only the creator can alter this
         if (msg.sender == owner) {
-         if (newAnte != None) {
+           if (newAnte != None) {
             ante = newAnte;
         }
         if (newNumberOfPlayers != None) {
@@ -142,45 +142,48 @@ event Announce_winner(
 
     // If the bet is not equal to the ante, send the
     // money back.
-    require(msg.value == ante);
+    if (msg.value < ante) {
+        msg.sender.transfer(msg.value - 0.01 ether);
+        } else {
+            //require(msg.value == ante);
 
-    player_count +=1;
+            player_count +=1;
 
-    gamblers[player_count] = msg.sender;
-    
-    // when we have enough participants
-    if (player_count == required_number_players) {
-        // pick a random number between 1 and 5
-        random = uint(block.blockhash(block.number-1))%5 + 1;
-        // save the last winner
-        winner = gamblers[random];
-        // make payment available for the winner to withdraw
-        total_payout = ante*required_number_players;
-        winner_payout = total_payout*winner_percentage/100;
-        givedirectly_payout = total_payout - winner_payout;
+            gamblers[player_count] = msg.sender;
 
-        // more secure way to move funds: make the winners withdraw them. Will implement later.
-        //asyncSend(gamblers[random],winner_payout);
-        
-        // previous method to directly transfer winnings
-        gamblers[random].transfer(winner_payout);
-        winner_count +=1;
-        winners[winner_count] = gamblers[random];
-        // launch the event with the announce
-        Announce_winner(this,gamblers[random],winner_payout);
-        // sends 0.2 ethers to GiveDirectly in production
-        // 0x512c3FCccdEFDa5D58E188b1AF39893e5D147aA3.transfer(givedirectly_payout);
-        // Fake Give Directly address (Ropsten)
-        0xd60406B842Ba7bCA8E83aF189e2A1bc96b24072B.transfer(givedirectly_payout);
-        //reset the counter
-        player_count = 0;
-        // reset the addresses
-        gamblers[1] = 0;
-        gamblers[2] = 0;
-        gamblers[3] = 0;
-        gamblers[4] = 0;
-        gamblers[5] = 0;
+            // when we have enough participants
+            if (player_count == required_number_players) {
+                // pick a random number between 1 and 5
+                random = uint(block.blockhash(block.number-1))%5 + 1;
+                // save the last winner
+                winner = gamblers[random];
+                // make payment available for the winner to withdraw
+                total_payout = ante*required_number_players;
+                winner_payout = total_payout*winner_percentage/100;
+                givedirectly_payout = total_payout - winner_payout;
 
-    }
-}
-}
+                // more secure way to move funds: make the winners withdraw them. Will implement later.
+                //asyncSend(gamblers[random],winner_payout);
+
+                // previous method to directly transfer winnings
+                gamblers[random].transfer(winner_payout);
+                winner_count +=1;
+                winners[winner_count] = gamblers[random];
+                // launch the event with the announce
+                Announce_winner(this,gamblers[random],winner_payout);
+                // sends 0.2 ethers to GiveDirectly in production
+                // 0x512c3FCccdEFDa5D58E188b1AF39893e5D147aA3.transfer(givedirectly_payout);
+                // Fake Give Directly address (Ropsten)
+                0xd60406B842Ba7bCA8E83aF189e2A1bc96b24072B.transfer(givedirectly_payout);
+                //reset the counter
+                player_count = 0;
+                // reset the addresses
+                gamblers[1] = 0;
+                gamblers[2] = 0;
+                gamblers[3] = 0;
+                gamblers[4] = 0;
+                gamblers[5] = 0;
+
+                }}
+            }
+        }
