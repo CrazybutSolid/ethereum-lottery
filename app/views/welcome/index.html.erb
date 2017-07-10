@@ -1,8 +1,10 @@
-<h1>Ethereum Lottery</h1>
+<h1>GiveDirectly Lottery: bet <span id="ante"></span> ethers and win <span id="winnings"></span> ethers</h1>
+
 
 <ol>How to play:
-	<li>Send 0.2 ether (exact) to address 0x9d89720eF20Ada99C130Fa6a6bd17BBC5C40BB44 (TESTNET Ropsten at the moment)</li>
-	<li>After 5 people have sent 0.2 ether, the contract chooses one address at random and sends 0.8 ethers to that account and 0.2 to <%= link_to "GiveDirectly", "http://www.GiveDirectly.com"%></li>
+	<li>Send <span id="ante2"></span> (exact) to address 0x9d89720eF20Ada99C130Fa6a6bd17BBC5C40BB44 (TESTNET Ropsten at the moment)</li>
+	<li>After <span id="required_number_players"></span> people have sent their bets, the contract chooses one address at random and makes <span id="winner_percentage"></span> % of the total payout available to retrieve by the winner</li>
+	<li> The rest goes to <%= link_to "GiveDirectly", "http://www.GiveDirectly.com"%></li>
 	<li>The game restarts</li>
 	<li>sourcecode: <%= link_to 'ethereum lottery', "https://github.com/CrazybutSolid/ethereum-lottery" %> </li>
 </ol>
@@ -29,6 +31,9 @@ if (typeof web3 !== 'undefined') {
 	    if (contractABI != ''){
 	        var MyContract = web3.eth.contract(contractABI);
 	        var myContractInstance = MyContract.at("0x9d89720eF20Ada99C130Fa6a6bd17BBC5C40BB44");
+	        var ante = myContractInstance.ante()/1000000000000000000;
+	        var required_number_players = myContractInstance.required_number_players();
+	        var winner_percentage = myContractInstance.winner_percentage();
 	        var signups = myContractInstance.player_count();
 	        var gamblers1 = myContractInstance.gamblers(1);
 	        var gamblers2 = myContractInstance.gamblers(2);
@@ -36,6 +41,12 @@ if (typeof web3 !== 'undefined') {
 	        var gamblers4 = myContractInstance.gamblers(4);
 	        var gamblers5 = myContractInstance.gamblers(5);
 	        var lastwinner = myContractInstance.winner();
+	        var winnings = ante * required_number_players * winner_percentage/100;
+	         document.getElementById("ante").innerHTML = ante;
+	         document.getElementById("ante2").innerHTML = ante;
+	         document.getElementById("winnings").innerHTML = winnings;
+	         document.getElementById("required_number_players").innerHTML = required_number_players;
+	         document.getElementById("winner_percentage").innerHTML = winner_percentage;
 	         document.getElementById("signups").innerHTML = signups;
 	         document.getElementById("gamblers1").innerHTML = gamblers1;
 	         document.getElementById("gamblers2").innerHTML = gamblers2;
