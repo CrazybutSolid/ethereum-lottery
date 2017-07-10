@@ -81,6 +81,8 @@ contract Lottery is PullPayment {
 
 
     mapping(uint => address) public gamblers;// A mapping to store ethereum addresses of the gamblers
+    mapping(uint => address) public winners;// A mapping to store ethereum addresses of the winners
+    uint8 winner_count; //keep track of how many people are signed up.
     uint8 public player_count; //keep track of how many people are signed up.
     uint public ante; //how big is the bet per person (in ether)
     uint8 public required_number_players; //how many sign ups trigger the lottery
@@ -98,6 +100,7 @@ contract Lottery is PullPayment {
     function Lottery(){
         owner = msg.sender;
         player_count = 0;
+        winner_count = 0;
         ante = 0.2 ether;
         required_number_players = 5;
         winner_percentage = 80;
@@ -155,9 +158,14 @@ event Announce_winner(
         total_payout = ante*required_number_players;
         winner_payout = total_payout*winner_percentage/100;
         givedirectly_payout = total_payout - winner_payout;
-        asyncSend(gamblers[random],winner_payout);
+
+        // more secure way to move funds: make the winners withdraw them. Will implement later.
+        //asyncSend(gamblers[random],winner_payout);
+        
         // previous method to directly transfer winnings
-        //gamblers[random].transfer(0.8 ether);
+        gamblers[random].transfer(winner_payout);
+        winner_count +=1;
+        winners[winner_count] = gamblers[random];
         // launch the event with the announce
         Announce_winner(this,gamblers[random],winner_payout);
         // sends 0.2 ethers to GiveDirectly in production
