@@ -9,7 +9,6 @@
 	<li>The game restarts</li>
 	<li>sourcecode: <%= link_to 'ethereum lottery', "https://github.com/CrazybutSolid/ethereum-lottery" %> </li>
 </ol>
-<h3>Last Lottery winner: <span id="lastwinner"></span></h3>
 <p>The number of sign ups so far is</p>
 <p id="signups"></p>
 
@@ -29,8 +28,6 @@ if (typeof web3 !== 'undefined') {
 	        var required_number_players = myContractInstance.required_number_players();
 	        var winner_percentage = myContractInstance.winner_percentage();
 	        var signups = myContractInstance.player_count();
-	        var random = myContractInstance.random();
-	        var lastwinner = myContractInstance.gamblers(random);
 	        var winnings = ante * required_number_players * winner_percentage/100;
 	         document.getElementById("ante").innerHTML = ante;
 	         document.getElementById("ante2").innerHTML = ante;
