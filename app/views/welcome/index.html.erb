@@ -29,6 +29,7 @@ if (typeof web3 !== 'undefined') {
 	        var required_number_players = myContractInstance.required_number_players();
 	        var winner_percentage = myContractInstance.winner_percentage();
 	        var signups = myContractInstance.player_count();
+	        var random = myContractInstance.random();
 	        var lastwinner = myContractInstance.gamblers(random);
 	        var winnings = ante * required_number_players * winner_percentage/100;
 	         document.getElementById("ante").innerHTML = ante;
