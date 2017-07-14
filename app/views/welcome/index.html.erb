@@ -3,7 +3,7 @@
 
 
 <ol>How to play:
-	<li>Send <span id="ante2"></span> (exact) to address 0x51cA0aE632fDeDae835b7C86773B76Ba816ff39a (TESTNET Ropsten at the moment)</li>
+	<li>Send <span id="ante2"></span> (exact) to address 0x4546B31467DE7C9ed83a1C48347ffF942E52d52B (TESTNET Ropsten at the moment)</li>
 	<li>After <span id="required_number_players"></span> people have sent their bets, the contract chooses one address at random and pays <span id="winner_percentage"></span> % of the total payout available to the winner</li>
 	<li> The rest goes to <%= link_to "GiveDirectly", "http://www.GiveDirectly.com"%></li>
 	<li>The game restarts</li>
@@ -12,14 +12,7 @@
 <h3>Last Lottery winner: <span id="lastwinner"></span></h3>
 <p>The number of sign ups so far is</p>
 <p id="signups"></p>
-<p>the list of sign ups so far:</p>
-<ol>
-	<li id="gamblers1"></li>
-	<li id="gamblers2"></li>
-	<li id="gamblers3"></li>
-	<li id="gamblers4"></li>
-	<li id="gamblers5"></li>
-</ol>
+
 <script type="text/javascript">
 if (typeof web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider);
@@ -28,20 +21,15 @@ if (typeof web3 !== 'undefined') {
 	var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/gZsX6A6SplPQZ1ScPjXA'));
 	//var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/lw3MDy2ASTmOSg0e6aaj'));
 	var version = web3.version.api;
-	    var contractABI = [ { "constant": true, "inputs": [], "name": "totalPayments", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "uint256" } ], "name": "gamblers", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [], "name": "withdrawPayments", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "uint256" } ], "name": "winners", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "required_number_players", "outputs": [ { "name": "", "type": "uint8", "value": "5" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "winner_percentage", "outputs": [ { "name": "", "type": "uint256", "value": "80" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "newAnte", "type": "uint256" }, { "name": "newNumberOfPlayers", "type": "uint8" }, { "name": "newWinnerPercentage", "type": "uint256" } ], "name": "changeParameters", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "player_count", "outputs": [ { "name": "", "type": "uint8", "value": "1" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "winner", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "payments", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "ante", "outputs": [ { "name": "", "type": "uint256", "value": "200000000000000000" } ], "payable": false, "type": "function" }, { "inputs": [], "payable": false, "type": "constructor" }, { "payable": true, "type": "fallback" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "_from", "type": "address" }, { "indexed": true, "name": "_to", "type": "address" }, { "indexed": false, "name": "_value", "type": "uint256" } ], "name": "Announce_winner", "type": "event" } ];
+	    var contractABI = [ { "constant": true, "inputs": [], "name": "next_round_players", "outputs": [ { "name": "", "type": "uint8", "value": "1" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "uint256" } ], "name": "gamblers", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [], "name": "refund", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "required_number_players", "outputs": [ { "name": "", "type": "uint8", "value": "5" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "winner_percentage", "outputs": [ { "name": "", "type": "uint256", "value": "80" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "newAnte", "type": "uint256" }, { "name": "newNumberOfPlayers", "type": "uint8" }, { "name": "newWinnerPercentage", "type": "uint256" } ], "name": "changeParameters", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "player_count", "outputs": [ { "name": "", "type": "uint8", "value": "2" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "ante", "outputs": [ { "name": "", "type": "uint256", "value": "200000000000000000" } ], "payable": false, "type": "function" }, { "inputs": [], "payable": false, "type": "constructor" }, { "payable": true, "type": "fallback" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "_from", "type": "address" }, { "indexed": true, "name": "_to", "type": "address" }, { "indexed": false, "name": "_value", "type": "uint256" } ], "name": "Announce_winner", "type": "event" } ];
 	    if (contractABI != ''){
 	        var MyContract = web3.eth.contract(contractABI);
-	        var myContractInstance = MyContract.at("0x51cA0aE632fDeDae835b7C86773B76Ba816ff39a");
+	        var myContractInstance = MyContract.at("0x4546B31467DE7C9ed83a1C48347ffF942E52d52B");
 	        var ante = myContractInstance.ante()/1000000000000000000;
 	        var required_number_players = myContractInstance.required_number_players();
 	        var winner_percentage = myContractInstance.winner_percentage();
 	        var signups = myContractInstance.player_count();
-	        var gamblers1 = myContractInstance.gamblers(1);
-	        var gamblers2 = myContractInstance.gamblers(2);
-	        var gamblers3 = myContractInstance.gamblers(3);
-	        var gamblers4 = myContractInstance.gamblers(4);
-	        var gamblers5 = myContractInstance.gamblers(5);
-	        var lastwinner = myContractInstance.winner();
+	        var lastwinner = myContractInstance.gamblers(random);
 	        var winnings = ante * required_number_players * winner_percentage/100;
 	         document.getElementById("ante").innerHTML = ante;
 	         document.getElementById("ante2").innerHTML = ante;
@@ -49,11 +37,6 @@ if (typeof web3 !== 'undefined') {
 	         document.getElementById("required_number_players").innerHTML = required_number_players;
 	         document.getElementById("winner_percentage").innerHTML = winner_percentage;
 	         document.getElementById("signups").innerHTML = signups;
-	         document.getElementById("gamblers1").innerHTML = gamblers1;
-	         document.getElementById("gamblers2").innerHTML = gamblers2;
-	         document.getElementById("gamblers3").innerHTML = gamblers3;
-	         document.getElementById("gamblers4").innerHTML = gamblers4;
-	         document.getElementById("gamblers5").innerHTML = gamblers5;
 	         document.getElementById("lastwinner").innerHTML = lastwinner;
 
 	    } else {
